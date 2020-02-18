@@ -1,0 +1,7 @@
+{
+    "editor.fontFamily": "'JetBrains Mono', Consolas, 'Courier New', monospace",
+    "vetur.grammar.customBlocks": {
+        "page-query": "graphql",
+        "static-query": "graphql"
+    }
+}

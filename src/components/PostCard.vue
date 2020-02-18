@@ -1,0 +1,60 @@
+<template>
+    <div class="PostCard" @mousemove.capture="moveHandler" @mouseleave="resetRotate" @mousedown="resetRotate" ref="card" :style="style" @click="(event) => $emit('click', event)">
+        <slot/>
+    </div>    
+</template>
+
+<script>
+export default {
+    name: "PostCard",
+    data() {
+        return {
+            rotX: 0,
+            rotY: 0
+        }
+    },
+    computed: {
+        style() {
+            return {
+                transform: `rotateX(${this.rotX}deg) rotateY(${this.rotY}deg)`
+            }
+        }
+    },
+    methods: {
+        moveHandler(e) {
+            let rect = this.$refs.card.getBoundingClientRect();
+            let height = this.$refs.card.clientHeight
+            let width = this.$refs.card.clientWidth
+            let x = e.clientX - rect.left; //x position within the element.
+            let y = e.clientY - rect.top;  //y position within the element.
+            let rotationData = {
+                xPercentage: ((x / width) - 0.5) * 2,
+                yPercentage: ((y / height) - 0.5) * 2
+            }
+            this.rotY = Math.round(-1 * rotationData.xPercentage * 15)
+            this.rotX = Math.round(rotationData.yPercentage * 15)
+        },
+        resetRotate(e) {
+            this.rotX = 0
+            this.rotY = 0
+            this.$
+        }
+    }
+}
+</script>
+
+<style lang="scss" scoped>
+.PostCard {
+    background: #EEEEEE;
+    padding: 1em;
+    margin: 1em;
+    perspective: 300rem;
+    transition: 100ms transform ease;
+    width: fit-content;
+    min-width: 50ch;
+    max-width: 50%;
+    border-radius: 1em;
+    box-shadow: 4px 4px 8px #22222280, -4px -4px 8px #e9e9e980;
+    cursor: pointer;
+}
+</style>

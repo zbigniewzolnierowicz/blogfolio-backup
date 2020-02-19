@@ -20,5 +20,12 @@ module.exports = {
   ],
   templates: {
     BlogPost: '/blog/:year/:month/:day/:slug'
+  },
+  chainWebpack: config => {
+    const svgRule = config.module.rule('svg')
+    svgRule.uses.clear()
+    svgRule
+      .use('vue-svg-loader')
+      .loader('vue-svg-loader')
   }
 }

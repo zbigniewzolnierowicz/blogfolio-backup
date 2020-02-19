@@ -1,6 +1,11 @@
 <template>
-    <div class="PostCard" @mousemove.capture="moveHandler" @mouseleave="resetRotate" @mousedown="resetRotate" ref="card" :style="style" @click="(event) => $emit('click', event)">
-        <slot/>
+    <div class="PostCard" @mousemove.capture="moveHandler" @mouseleave="resetRotate" @mousedown="resetRotate" ref="card" :style="style" @click.self="(event) => $emit('click', event)">
+        <main>
+            <slot name="main"/>
+        </main>
+        <aside>
+            <slot name="aside"/>
+        </aside>
     </div>    
 </template>
 
@@ -31,13 +36,14 @@ export default {
                 xPercentage: ((x / width) - 0.5) * 2,
                 yPercentage: ((y / height) - 0.5) * 2
             }
-            this.rotY = Math.round(-1 * rotationData.xPercentage * 15)
-            this.rotX = Math.round(rotationData.yPercentage * 15)
+            this.rotY = Math.round(rotationData.xPercentage * 15)
+            this.rotX = Math.round(-1 * rotationData.yPercentage * 15)
         },
         resetRotate(e) {
-            this.rotX = 0
-            this.rotY = 0
-            this.$
+            setTimeout(() => {
+                this.rotX = 0
+                this.rotY = 0
+            }, 500)
         }
     }
 }
@@ -45,6 +51,9 @@ export default {
 
 <style lang="scss" scoped>
 .PostCard {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: auto;
     background: #EEEEEE;
     padding: 1em;
     margin: 1em;
@@ -52,9 +61,20 @@ export default {
     transition: 100ms transform ease;
     width: fit-content;
     min-width: 50ch;
-    max-width: 50%;
+    max-width: 75ch;
     border-radius: 1em;
     box-shadow: 4px 4px 8px #22222280, -4px -4px 8px #e9e9e980;
     cursor: pointer;
+    main {
+        grid-column: 1 / 1;
+    }
+    aside {
+        grid-column: 2 / 2;
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
 }
 </style>

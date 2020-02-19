@@ -10,35 +10,39 @@
 </template>
 
 <script>
+function setRotationAndPercentage(angle) {
+    return function(e) {
+        let rect = this.$refs.card.getBoundingClientRect();
+        let height = this.$refs.card.clientHeight
+        let width = this.$refs.card.clientWidth
+        let x = e.clientX - rect.left; //x position within the element.
+        let y = e.clientY - rect.top;  //y position within the element.
+        this.xPercentage = ((x / width) - 0.5) * 2,
+        this.yPercentage = ((y / height) - 0.5) * 2
+        this.rotY = Math.round(this.xPercentage * angle)
+        this.rotX = Math.round(-1 * this.yPercentage * angle)
+    }
+}
 export default {
     name: "PostCard",
     data() {
         return {
             rotX: 0,
-            rotY: 0
+            rotY: 0,
+            xPercentage: 0,
+            yPercentage: 0
         }
     },
     computed: {
         style() {
             return {
-                transform: `rotateX(${this.rotX}deg) rotateY(${this.rotY}deg)`
+                transform: `rotateX(${this.rotX}deg) rotateY(${this.rotY}deg)`,
+                background: `radial-gradient(circle at ${((this.xPercentage + 1) / 2) * 100}% ${((this.yPercentage + 1) / 2) * 100}%, #FFFFFF 10%, #EEEEEE)`
             }
         }
     },
     methods: {
-        moveHandler(e) {
-            let rect = this.$refs.card.getBoundingClientRect();
-            let height = this.$refs.card.clientHeight
-            let width = this.$refs.card.clientWidth
-            let x = e.clientX - rect.left; //x position within the element.
-            let y = e.clientY - rect.top;  //y position within the element.
-            let rotationData = {
-                xPercentage: ((x / width) - 0.5) * 2,
-                yPercentage: ((y / height) - 0.5) * 2
-            }
-            this.rotY = Math.round(rotationData.xPercentage * 15)
-            this.rotX = Math.round(-1 * rotationData.yPercentage * 15)
-        },
+        moveHandler: setRotationAndPercentage(7.5),
         resetRotate(e) {
             setTimeout(() => {
                 this.rotX = 0
@@ -54,7 +58,6 @@ export default {
     display: grid;
     grid-template-columns: 3fr 1fr;
     grid-template-rows: auto;
-    background: #EEEEEE;
     padding: 1em;
     margin: 1em;
     perspective: 300rem;

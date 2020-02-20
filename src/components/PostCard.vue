@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import { gsap } from 'gsap';
 function setRotationAndPercentage(angle) {
     return function(e) {
         let rect = this.$refs.card.getBoundingClientRect();
@@ -30,14 +31,15 @@ export default {
             rotX: 0,
             rotY: 0,
             xPercentage: 0,
-            yPercentage: 0
+            yPercentage: 0,
+            color: "#734b6d"
         }
     },
     computed: {
         style() {
             return {
                 transform: `rotateX(${this.rotX}deg) rotateY(${this.rotY}deg)`,
-                background: `radial-gradient(circle at ${((this.xPercentage + 1) / 2) * 100}% ${((this.yPercentage + 1) / 2) * 100}%, #FFFFFF 10%, #EEEEEE)`
+                background: `radial-gradient(circle at ${((this.xPercentage + 1) / 2) * 100}% ${((this.yPercentage + 1) / 2) * 100}%, rgba(255, 255, 255, 0.1), transparent 75%), ${this.color}`
             }
         }
     },
@@ -45,8 +47,7 @@ export default {
         moveHandler: setRotationAndPercentage(7.5),
         resetRotate(e) {
             setTimeout(() => {
-                this.rotX = 0
-                this.rotY = 0
+                gsap.to(this.$data, { rotX: 0, rotY: 0, xPercentage: 0, yPercentage: 0 });
             }, 500)
         }
     }
@@ -67,13 +68,18 @@ export default {
     max-width: 75ch;
     border-radius: 1em;
     box-shadow: 4px 4px 8px #22222280, -4px -4px 8px #e9e9e980;
+    color: white;
     cursor: pointer;
     main {
         grid-column: 1 / 1;
+        h3 {
+            
+        }
     }
     aside {
         grid-column: 2 / 2;
-        img {
+        img, svg {
+            display: block;
             width: 100%;
             height: 100%;
             object-fit: contain;

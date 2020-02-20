@@ -13,7 +13,6 @@
               <p>{{ edge.node.timeToRead }} min</p>
             </template>
             <template v-slot:aside>
-              <g-image src="../assets/align-left.svg"/>
             </template>
           </PostCard>
         </div>

@@ -72,9 +72,6 @@ export default {
     cursor: pointer;
     main {
         grid-column: 1 / 1;
-        h3 {
-            
-        }
     }
     aside {
         grid-column: 2 / 2;

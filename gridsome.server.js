@@ -6,8 +6,23 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = function (api) {
-  api.loadSource(({ addCollection }) => {
-    // Use the Data Store API here: https://gridsome.org/docs/data-store-api/
+  api.loadSource(({ addCollection, getCollection }) => {
+    const posts = getCollection("BlogPost");
+    const tags = addCollection("Tag");
+    posts.addReference("tags", "Tag");
+    const listOfTags = [
+      {
+        id: "story",
+        title: "Stories I wrote!"
+      },
+      {
+        id: "creative",
+        title: "Creative work"
+      }
+    ];
+    for (const tag of listOfTags) {
+      tags.addNode(tag);
+    }
   })
 
   api.createPages(({ createPage }) => {

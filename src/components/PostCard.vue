@@ -19,14 +19,15 @@ import { ChevronRightIcon } from 'vue-feather-icons';
 function setRotationAndPercentage(angle) {
     return function(e) {
         let rect = this.$refs.card.getBoundingClientRect();
-        let height = this.$refs.card.clientHeight
-        let width = this.$refs.card.clientWidth
-        let x = e.clientX - rect.left; //x position within the element.
-        let y = e.clientY - rect.top;  //y position within the element.
-        this.xPercentage = ((x / width) - 0.5) * 2,
-        this.yPercentage = ((y / height) - 0.5) * 2
-        this.rotY = Math.round(this.xPercentage * angle)
-        this.rotX = Math.round(-1 * this.yPercentage * angle)
+        let height = this.$refs.card.clientHeight;
+        let width = this.$refs.card.clientWidth;
+        let x = e.clientX - rect.left;
+        let y = e.clientY - rect.top;
+        let xPercentage = ((x / width) - 0.5) * 2;
+        let yPercentage = ((y / height) - 0.5) * 2;
+        let rotY = Math.round(xPercentage * angle);
+        let rotX = Math.round(-1 * yPercentage * angle);
+        gsap.to(this.styleData, { rotX, rotY, xPercentage, yPercentage });
     }
 }
 export default {
@@ -34,18 +35,20 @@ export default {
     props: [ "header" ],
     data() {
         return {
-            rotX: 0,
-            rotY: 0,
-            xPercentage: 0,
-            yPercentage: 0,
+            styleData: {
+                rotX: 0,
+                rotY: 0,
+                xPercentage: 0,
+                yPercentage: 0,
+            },
             color: "linear-gradient(145deg, #ffffff, #d6d6d6)"
         }
     },
     computed: {
         style() {
             return {
-                transform: `rotateX(${this.rotX}deg) rotateY(${this.rotY}deg)`,
-                background: `radial-gradient(circle at ${((this.xPercentage + 1) / 2) * 100}% ${((this.yPercentage + 1) / 2) * 100}%, rgba(255, 255, 255, 0.5), transparent 75%), ${this.color}`
+                transform: `rotateX(${this.styleData.rotX}deg) rotateY(${this.styleData.rotY}deg)`,
+                background: `radial-gradient(circle at ${((this.styleData.xPercentage + 1) / 2) * 100}% ${((this.styleData.yPercentage + 1) / 2) * 100}%, rgba(255, 255, 255, 0.5), transparent 75%), ${this.color}`
             }
         }
     },
@@ -53,7 +56,7 @@ export default {
         moveHandler: setRotationAndPercentage(5),
         resetRotate(e) {
             setTimeout(() => {
-                gsap.to(this.$data, { rotX: 0, rotY: 0, xPercentage: 0, yPercentage: 0 });
+                gsap.to(this.styleData, { rotX: 0, rotY: 0, xPercentage: 0, yPercentage: 0 });
             }, 500)
         }
     },
@@ -90,7 +93,7 @@ export default {
         }
     }
     header {
-    cursor: pointer;
+        cursor: pointer;
         grid-area: header;
         grid-row: 1 / 2;
         grid-column: 1 / 1;

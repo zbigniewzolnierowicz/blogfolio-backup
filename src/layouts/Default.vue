@@ -1,6 +1,7 @@
 <template>
   <div class="BasicLayout">
     <header>
+      <h1>{{ $static.metadata.siteName }}</h1>
     </header>
     <slot/>
     <footer></footer>

@@ -1,21 +1,20 @@
 <template>
     <Layout>
-        <h1>{{ $static.metadata.siteName }}</h1>
-        <div class="listOfPosts">
-          <PostCard
-            v-for="edge in $static.allBlogPost.edges"
-            :key="edge.node.id"
-            @click="$router.push({ path: edge.node.path })"
-            :header="edge.node.title"
-          >
-            <template v-slot:main>
-              <p>{{ edge.node.excerpt }}</p>
-              <p>{{ edge.node.timeToRead }} min</p>
-            </template>
-            <template v-slot:aside>
-            </template>
-          </PostCard>
-        </div>
+      <div class="listOfPosts">
+        <PostCard
+          v-for="edge in $static.allBlogPost.edges"
+          :key="edge.node.id"
+          @click="$router.push({ path: edge.node.path })"
+          :header="edge.node.title"
+        >
+          <template v-slot:main>
+            <p>{{ edge.node.excerpt }}</p>
+            <p>{{ edge.node.timeToRead }} min</p>
+          </template>
+          <template v-slot:aside>
+          </template>
+        </PostCard>
+      </div>
     </Layout>
 </template>
 

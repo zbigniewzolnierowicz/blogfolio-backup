@@ -14,7 +14,11 @@ module.exports = {
         typeName: 'BlogPost',
         baseDir: './content/blog',
         pathPrefix: '/blog',
-        path: '*.md'
+        path: '*.md',
+        tags: {
+          typeName: '[Tag]',
+          create: true
+        }
       }
     }
   ],

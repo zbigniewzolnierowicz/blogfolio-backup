@@ -6,9 +6,9 @@
             v-for="edge in $static.allBlogPost.edges"
             :key="edge.node.id"
             @click="$router.push({ path: edge.node.path })"
+            :header="edge.node.title"
           >
             <template v-slot:main>
-              <h3>{{ edge.node.title }}</h3>
               <p>{{ edge.node.excerpt }}</p>
               <p>{{ edge.node.timeToRead }} min</p>
             </template>

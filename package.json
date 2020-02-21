@@ -10,7 +10,8 @@
     "@gridsome/source-filesystem": "^0.6.2",
     "@gridsome/transformer-remark": "^0.4.0",
     "gridsome": "^0.7.0",
-    "gsap": "^3.1.1"
+    "gsap": "^3.1.1",
+    "vue-feather-icons": "^5.0.0"
   },
   "devDependencies": {
     "node-sass": "^4.13.1",

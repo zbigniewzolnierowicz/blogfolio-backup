@@ -1,7 +1,9 @@
 <template>
     <div class="PostCard" @mousemove.capture="moveHandler" @mouseleave="resetRotate" @mousedown="resetRotate" ref="card" :style="style">
-        <main>
+        <header>
             <h3><a @click="$emit('click')">{{ header }}</a></h3>
+        </header>
+        <main>
             <slot name="main"/>
         </main>
         <aside>
@@ -65,22 +67,33 @@ export default {
 .PostCard {
     display: grid;
     grid-template-columns: 3fr 1fr;
-    grid-template-rows: 4fr 1fr;
+    grid-template-rows: 2fr 3fr 1fr;
+    grid-template-areas:
+        "header header header"
+        "main main aside"
+        "main main navigator";
     padding: 1em;
     margin: 1em;
     perspective: 300rem;
     transition: 100ms transform ease;
     width: fit-content;
-    min-width: 50ch;
+    min-width: 20ch;
     max-width: 75ch;
     border-radius: 1em;
     box-shadow: 21px 21px 36px #cacaca, 
             -21px -21px 36px #ffffff;
     color: white;
-    cursor: pointer;
     main {
-        grid-column: 1 / 1;
+        grid-area: main;
+        p {
+            color: black;
+        }
+    }
+    header {
+    cursor: pointer;
+        grid-area: header;
         grid-row: 1 / 2;
+        grid-column: 1 / 1;
         h3 a {
             transition: 300ms color ease;
             color: #734b6d;
@@ -88,13 +101,11 @@ export default {
                 color: #ac73a3;
             }
         }
-        p {
-            color: black;
-        }
     }
     aside {
-        grid-column: 2 / 2;
-        grid-row: 1 / 1;
+        grid-area: aside;
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
         img, svg {
             display: block;
             width: 100%;
@@ -103,7 +114,9 @@ export default {
         }
     }
     section.navigator {
-        grid-row: 2 / 2;
+        cursor: pointer;
+        grid-area: navigator;
+        grid-row: 3 / 3;
         grid-column: 2 / 2;
         align-self: flex-end;
         justify-self: flex-end;

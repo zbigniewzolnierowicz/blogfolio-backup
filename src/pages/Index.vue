@@ -1,11 +1,12 @@
 <template>
     <Layout>
-      <div class="listOfPosts">
+      <div class="listOfPosts" role="list">
         <PostCard
           v-for="edge in $static.allBlogPost.edges"
           :key="edge.node.id"
           @click="$router.push({ path: edge.node.path })"
           :header="edge.node.title"
+          role="listitem"
         >
           <template v-slot:main>
             <p>{{ edge.node.excerpt }}</p>

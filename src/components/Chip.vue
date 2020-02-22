@@ -29,6 +29,7 @@ $md-chip-height: 32px;
   }
   text-transform: capitalize;
   &.disabled {
+    cursor: default;
     background: hsl(var(--colorPrimary-h), calc(var(--colorPrimary-s) - 10%), calc(var(--colorPrimary-l) - 10%));
     &:hover {
       background: hsl(var(--colorPrimary-h), calc(var(--colorPrimary-s) - 10%), calc(var(--colorPrimary-l) - 10%));

@@ -14,6 +14,7 @@ export default {
 <style lang="scss" scoped>
 $md-chip-height: 32px;
 .md-chip {
+  cursor: pointer;
   display: inline-block;
   background: hsl(var(--cardColorPrimary-h), var(--cardColorPrimary-s), calc(var(--cardColorPrimary-l) - 10%));
   font-family: var(--sansSerifFont);

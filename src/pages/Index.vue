@@ -12,7 +12,10 @@
             <p>{{ edge.node.excerpt }}</p>
             <p>{{ edge.node.timeToRead }} min</p>
           </template>
-          <template v-slot:aside>
+          <template v-slot:chips>
+            <Chip v-for="tag in edge.node.tags" :key="tag.id" :title="tag.title">
+              {{ tag.id }}
+            </Chip>
           </template>
         </PostCard>
       </div>
@@ -31,6 +34,10 @@ query {
         path
         excerpt
         timeToRead
+        tags {
+          id
+          title
+        }
       }
     }
   }
@@ -39,11 +46,11 @@ query {
 
 <script>
 import PostCard from "../components/PostCard"
-import AlignLeft from "../assets/align-left.svg"
+import Chip from "../components/Chip"
 export default {
   components: {
     PostCard,
-    AlignLeft
+    Chip
   }
 }
 </script>

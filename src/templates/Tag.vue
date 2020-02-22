@@ -58,9 +58,6 @@ export default {
   components: {
     PostCard,
     Chip
-  },
-  mounted() {
-    console.log(this.$router)
   }
 }
 </script>

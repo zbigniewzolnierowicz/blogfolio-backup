@@ -55,6 +55,7 @@ export default {
 
 <style lang="scss" scoped>
 .PostCard {
+    --distance: 21px;
     --cardColorPrimary: hsl(var(--cardColorPrimary-h), var(--cardColorPrimary-s), var(--cardColorPrimary-l));
     --top-left-shadow: hsl(var(--cardColorPrimary-h), var(--cardColorPrimary-s), calc(var(--cardColorPrimary-l) - 11%));
     --bottom-right-shadow: hsl(var(--cardColorPrimary-h), var(--cardColorPrimary-s), calc(var(--cardColorPrimary-l) + 11%));
@@ -74,8 +75,8 @@ export default {
     min-width: 20ch;
     max-width: 75ch;
     border-radius: 1em;
-    box-shadow: 21px 21px 36px var(--top-left-shadow), 
-            -21px -21px 36px var(--bottom-right-shadow);
+    box-shadow: var(--distance) var(--distance) 36px var(--top-left-shadow), 
+            calc(0px - var(--distance)) calc(0px - var(--distance)) 36px var(--bottom-right-shadow);
     color: hsl(var(--cardColorPrimary-h), 0% , calc(100% - var(--cardColorPrimary-l)));
     background: radial-gradient(circle at 50% 50%, transparent, transparent 75%), var(--cardColorPrimary);
     main {

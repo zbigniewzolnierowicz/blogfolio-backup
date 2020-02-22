@@ -97,10 +97,11 @@ export default {
             margin: 0;
             font-size: 4vh;
             a {
+                cursor: pointer;
                 transition: 300ms color ease;
-                color: #734b6d;
+                color: hsl(var(--cardColorPrimary-h), calc(10% + var(--cardColorPrimary-s)), calc(100% - var(--cardColorPrimary-l)));
                 &:hover {
-                    color: #ac73a3;
+                    color: hsl(var(--cardColorPrimary-h), 100%, calc(100% - var(--cardColorPrimary-l)));
                 }
             }
         }

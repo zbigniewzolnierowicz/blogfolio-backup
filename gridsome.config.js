@@ -28,7 +28,8 @@ module.exports = {
     }
   ],
   templates: {
-    BlogPost: '/blog/:year/:month/:day/:slug'
+    BlogPost: '/blog/:year/:month/:day/:slug',
+    Tag: '/tag/:id'
   },
   chainWebpack: config => {
     const svgRule = config.module.rule('svg')

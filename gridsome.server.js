@@ -6,17 +6,19 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = function (api) {
-  api.loadSource(({ addCollection, getCollection }) => {
-    const posts = getCollection("BlogPost");
+  api.loadSource(({ addCollection }) => {
+    const posts = addCollection("BlogPost");
     const tags = addCollection("Tag");
     posts.addReference("tags", "Tag");
     const listOfTags = [
       {
         id: "story",
+        shortTitle: "story",
         title: "Stories I wrote!"
       },
       {
         id: "creative",
+        shortTitle: "creative",
         title: "Creative work"
       }
     ];

@@ -1,11 +1,12 @@
 <template>
   <Layout>
+    <h1>{{ $page.tag.title }}</h1>
     <div class="listOfPosts" role="list">
       <PostCard
-        v-for="edge in $static.allBlogPost.edges"
+        v-for="edge in $page.tag.belongsTo.edges"
         :key="edge.node.id"
-        @click="$router.push({ path: edge.node.path })"
         :header="edge.node.title"
+        @click="$router.push({ path: edge.node.path })"
         :timeToRead="edge.node.timeToRead + ' min'"
         role="listitem"
       >
@@ -13,7 +14,7 @@
           <p>{{ edge.node.excerpt }}</p>
         </template>
         <template v-slot:chips>
-          <Chip v-for="tag in edge.node.tags" :key="tag.id" :title="tag.title" role="listitem" @click="$router.push({ path: tag.path })">
+          <Chip v-for="tag in edge.node.tags" :key="tag.id" :title="tag.title" role="listitem" :disabled="(tag.path === $router.currentRoute.fullPath)" @click="$router.push({ path: tag.path })">
             {{ tag.shortTitle }}
           </Chip>
         </template>
@@ -22,40 +23,44 @@
   </Layout>
 </template>
 
-<static-query>
-query {
-  metadata {
-    siteName
-  }
-  allBlogPost {
-    edges {
-      node {
-        title
-        path
-        excerpt
-        timeToRead
-        tags {
-          id
-          shortTitle
-          path
-          title
+<page-query>
+query ($id: ID!) {
+  tag(id: $id) {
+    title
+    belongsTo {
+      edges {
+        node {
+          ... on BlogPost {
+            id
+            title
+            excerpt
+            path
+            timeToRead
+            tags {
+              id
+              title
+              shortTitle
+              path
+            }
+          }
         }
       }
     }
   }
 }
-</static-query>
+</page-query>
 
 <script>
 import PostCard from "../components/PostCard"
 import Chip from "../components/Chip"
 export default {
+  name: "Tag",
   components: {
     PostCard,
     Chip
   },
   mounted() {
-    console.log("You look at the maclunky and think about how tasty it is. You think about how delicious it would be if you ate it raw. You think about how delicious it would be if you ate it cooked.")
+    console.log(this.$router)
   }
 }
 </script>

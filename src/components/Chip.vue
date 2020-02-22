@@ -1,5 +1,5 @@
 <template>
-    <div class="md-chip" :title="title">
+    <div class="md-chip" :title="title" @click="disabled ? null : $emit('click')" :class="disabled ? 'disabled' : ''" role="link">
       <slot />
     </div>
 </template>
@@ -7,7 +7,7 @@
 <script>
 export default {
     name: "Chip",
-    props: ['title']
+    props: ['title', 'disabled']
 }
 </script>
 
@@ -28,6 +28,13 @@ $md-chip-height: 32px;
     color: hsl(var(--colorPrimary-h), 0% , calc(100% - calc(var(--colorPrimary-l) + 20%)));
   }
   text-transform: capitalize;
+  &.disabled {
+    background: hsl(var(--colorPrimary-h), calc(var(--colorPrimary-s) - 10%), calc(var(--colorPrimary-l) - 10%));
+    &:hover {
+      background: hsl(var(--colorPrimary-h), calc(var(--colorPrimary-s) - 10%), calc(var(--colorPrimary-l) - 10%));
+      color: hsl(var(--colorPrimary-h), 0% , calc(100% - calc(var(--colorPrimary-l))));
+    }
+  }
 }
 
 .md-chip, .md-chip-icon {

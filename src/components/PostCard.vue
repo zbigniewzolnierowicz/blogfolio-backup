@@ -113,7 +113,12 @@ export default {
         align-self: flex-end;
         justify-self: flex-end;
         svg {
-            color: black;
+            color: hsl(var(--cardColorPrimary-h), var(--cardColorPrimary-s), calc(var(--cardColorPrimary-l) + 30%));
+            transition: 300ms color ease;
+            &:hover {
+                color: hsl(var(--cardColorPrimary-h), var(--cardColorPrimary-s), calc(var(--cardColorPrimary-l) - 30%));;
+            }
+        }
         }
     }
 }

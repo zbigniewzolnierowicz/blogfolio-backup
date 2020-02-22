@@ -1,8 +1,6 @@
 <template>
   <div class="BlogLayout">
-    <header>
-      
-    </header>
+    <header></header>
     <slot/>
     <footer></footer>
   </div>

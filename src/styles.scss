@@ -1,37 +1,37 @@
 @import url('https://fonts.googleapis.com/css?family=Space+Mono&display=swap');
 
 :root {
-    --cardColorPrimary-h: 90;
-    --cardColorPrimary-s: 20%;
-    --cardColorPrimary-l: 80%;
-    --monospaceFont: 'Space Mono', 'Courier New', Courier, monospace;
-    --serifFont: Georgia, 'Times New Roman', Times, serif;
-    --sansSerifFont: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  --colorPrimary-h: 90;
+  --colorPrimary-s: 20%;
+  --colorPrimary-l: 80%;
+  --monospaceFont: 'Space Mono', 'Courier New', Courier, monospace;
+  --serifFont: Georgia, 'Times New Roman', Times, serif;
+  --sansSerifFont: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 body, html {
-    width: 100%;
-    height: 100%;
-    margin: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
 }
 
 h1, h2, h3, h4, h5 {
-    font-family: var(--sansSerifFont);
+  font-family: var(--sansSerifFont);
 }
 
 p {
-    font-family: var(--serifFont);
+  font-family: var(--serifFont);
 }
 
 code, pre {
-    font-family: var(--monospaceFont);
+  font-family: var(--monospaceFont);
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 #app {
-    background-color: hsl(var(--cardColorPrimary-h), var(--cardColorPrimary-s), var(--cardColorPrimary-l));
-    min-height: 100%;
+  background-color: hsl(var(--colorPrimary-h), var(--colorPrimary-s), var(--colorPrimary-l));
+  min-height: 100%;
 }

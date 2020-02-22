@@ -1,8 +1,8 @@
 <template>
-    <Layout>
-        <div v-html="this.$page.blogPost.content">
-        </div>
-    </Layout>
+  <Layout>
+    <div v-html="this.$page.blogPost.content">
+    </div>
+  </Layout>
 </template>
 
 <page-query>
@@ -18,12 +18,12 @@ query getBlogPost($path: String!) {
 <script>
 //import BlogLayout from '../layouts/BlogLayout';
 export default {
-    name: "BlogPostTemplate",
-    created() {
-    },
-//    components: {
-//        BlogLayout
-//    }
+  name: "BlogPostTemplate",
+  created() {
+  },
+  // components: {
+  //     BlogLayout
+  // }
 }
 </script>
 

@@ -6,11 +6,11 @@
         <main>
             <slot name="main"/>
         </main>
-        <aside>
-            <slot name="aside"/>
-        </aside>
-        <section class="chips">
+        <section class="chips" role="list">
             <slot name="chips" />
+        </section>
+        <section class="ttr">
+            {{ timeToRead }}
         </section>
         <section class="navigator" @click="$emit('click')"><chevron-right-icon /></section>
     </div>    
@@ -35,7 +35,7 @@ function setRotationAndPercentage(angle) {
 }
 export default {
     name: "PostCard",
-    props: [ "header" ],
+    props: [ "header", "timeToRead" ],
     computed: {
         style() {
             return {
@@ -65,10 +65,11 @@ export default {
 
     display: grid;
     grid-template-columns: 3fr 1fr;
-    grid-template-rows: 2fr 4fr 1fr;
+    grid-template-rows: 1fr 1fr 3fr 1fr;
     grid-template-areas:
-        "header header header"
-        "main main aside"
+        "header header ttr"
+        "header header ."
+        "main main main"
         "chips chips navigator";
     padding: 1em;
     margin: 1em;
@@ -119,14 +120,14 @@ export default {
         align-self: flex-end;
         justify-self: flex-end;
         svg {
-            color: hsl(var(--cardColorPrimary-h), var(--cardColorPrimary-s), calc(var(--cardColorPrimary-l) + 30%));
+            color: hsl(var(--cardColorPrimary-h), 0% , calc(100% - var(--cardColorPrimary-l)));
             transition: 300ms color ease;
             &:hover {
-                color: hsl(var(--cardColorPrimary-h), var(--cardColorPrimary-s), calc(var(--cardColorPrimary-l) - 30%));;
+                color: hsl(var(--cardColorPrimary-h), var(--cardColorPrimary-s), calc(var(--cardColorPrimary-l) - 30%));
             }
         }
     }
-    section.chips {
+    .chips {
         grid-area: chips;
         display: flex;
         flex-direction: row;
@@ -140,6 +141,14 @@ export default {
             }
             margin-right: 1ch;
         }
+    }
+    section.ttr {
+        display: flex;
+        grid-area: ttr;
+        font-family: var(--sansSerifFont);
+        color: hsl(var(--cardColorPrimary-h), var(--cardColorPrimary-s), calc(var(--cardColorPrimary-l) - 30%));
+        align-items: center;
+        justify-content: center;
     }
 }
 </style>

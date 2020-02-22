@@ -6,14 +6,14 @@
           :key="edge.node.id"
           @click="$router.push({ path: edge.node.path })"
           :header="edge.node.title"
+          :timeToRead="edge.node.timeToRead + ' min'"
           role="listitem"
         >
           <template v-slot:main>
             <p>{{ edge.node.excerpt }}</p>
-            <p>{{ edge.node.timeToRead }} min</p>
           </template>
           <template v-slot:chips>
-            <Chip v-for="tag in edge.node.tags" :key="tag.id" :title="tag.title">
+            <Chip v-for="tag in edge.node.tags" :key="tag.id" :title="tag.title" role="listitem">
               {{ tag.id }}
             </Chip>
           </template>

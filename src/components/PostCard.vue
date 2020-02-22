@@ -61,7 +61,7 @@ export default {
 
     display: grid;
     grid-template-columns: 3fr 1fr;
-    grid-template-rows: 2fr 3fr 1fr;
+    grid-template-rows: 2fr 4fr 1fr;
     grid-template-areas:
         "header header header"
         "main main aside"

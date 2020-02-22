@@ -1,9 +1,29 @@
+:root {
+    --cardColorPrimary-h: 0;
+    --cardColorPrimary-s: 0%;
+    --cardColorPrimary-l: 18%;
+    --monospaceFont: 'Fira Code Mono', 'Courier New', Courier, monospace;
+    --serifFont: Georgia, 'Times New Roman', Times, serif;
+    --sansSerifFont: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: var(--sansSerifFont);
+}
+
+p {
+    font-family: var(--serifFont);
+}
+
+code, pre {
+    font-family: var(--monospaceFont);
+}
+
 * {
     box-sizing: border-box;
-    font-family: Helvetica, sans-serif;
 }
 
 #app {
-    background-color: #eeeeee;
+    background-color: hsl(var(--cardColorPrimary-h), var(--cardColorPrimary-s), var(--cardColorPrimary-l));
     min-height: 100%;
 }

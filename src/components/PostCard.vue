@@ -1,5 +1,5 @@
 <template>
-    <div class="PostCard" @mousemove.capture="moveHandler" @mouseleave="resetRotate" @mousedown="resetRotate" ref="card" :style="style">
+    <div class="PostCard" @mousemove.capture="moveHandler" @mouseleave="resetRotate" @mousedown="resetRotate" ref="card">
         <header>
             <h3><a @click="$emit('click')">{{ header }}</a></h3>
         </header>
@@ -27,28 +27,15 @@ function setRotationAndPercentage(angle) {
         let yPercentage = ((y / height) - 0.5) * 2;
         let rotY = Math.round(xPercentage * angle);
         let rotX = Math.round(-1 * yPercentage * angle);
-        gsap.to(this.styleData, { rotX, rotY, xPercentage, yPercentage });
+        gsap.to(this.$refs.card, { rotationX: rotX, rotationY: rotY, background: `radial-gradient(circle at ${((xPercentage + 1) / 2) * 100}% ${((yPercentage + 1) / 2) * 100}%, rgba(255, 255, 255, 0.1), transparent 75%), var(--cardColorPrimary)` });
     }
 }
 export default {
     name: "PostCard",
     props: [ "header" ],
-    data() {
-        return {
-            styleData: {
-                rotX: 0,
-                rotY: 0,
-                xPercentage: 0,
-                yPercentage: 0,
-            },
-            color: "linear-gradient(145deg, #ffffff, #d6d6d6)"
-        }
-    },
     computed: {
         style() {
             return {
-                transform: `rotateX(${this.styleData.rotX}deg) rotateY(${this.styleData.rotY}deg)`,
-                background: `radial-gradient(circle at ${((this.styleData.xPercentage + 1) / 2) * 100}% ${((this.styleData.yPercentage + 1) / 2) * 100}%, rgba(255, 255, 255, 0.5), transparent 75%), ${this.color}`
             }
         }
     },
@@ -56,7 +43,7 @@ export default {
         moveHandler: setRotationAndPercentage(5),
         resetRotate(e) {
             setTimeout(() => {
-                gsap.to(this.styleData, { rotX: 0, rotY: 0, xPercentage: 0, yPercentage: 0 });
+                gsap.to(this.$refs.card, { rotationX: 0, rotationY: 0, background: `radial-gradient(circle at 50% 50%, transparent, transparent 75%), var(--cardColorPrimary)` });
             }, 500)
         }
     },
@@ -68,6 +55,10 @@ export default {
 
 <style lang="scss" scoped>
 .PostCard {
+    --cardColorPrimary: hsl(var(--cardColorPrimary-h), var(--cardColorPrimary-s), var(--cardColorPrimary-l));
+    --top-left-shadow: hsl(var(--cardColorPrimary-h), var(--cardColorPrimary-s), calc(var(--cardColorPrimary-l) - 11%));
+    --bottom-right-shadow: hsl(var(--cardColorPrimary-h), var(--cardColorPrimary-s), calc(var(--cardColorPrimary-l) + 11%));
+
     display: grid;
     grid-template-columns: 3fr 1fr;
     grid-template-rows: 2fr 3fr 1fr;
@@ -83,14 +74,12 @@ export default {
     min-width: 20ch;
     max-width: 75ch;
     border-radius: 1em;
-    box-shadow: 21px 21px 36px #cacaca, 
-            -21px -21px 36px #ffffff;
-    color: white;
+    box-shadow: 21px 21px 36px var(--top-left-shadow), 
+            -21px -21px 36px var(--bottom-right-shadow);
+    color: hsl(var(--cardColorPrimary-h), 0% , calc(100% - var(--cardColorPrimary-l)));
+    background: radial-gradient(circle at 50% 50%, transparent, transparent 75%), var(--cardColorPrimary);
     main {
         grid-area: main;
-        p {
-            color: black;
-        }
     }
     header {
         cursor: pointer;

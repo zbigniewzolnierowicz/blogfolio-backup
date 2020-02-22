@@ -28,4 +28,7 @@ body, html {
     margin: 0
   }
 }
+header h1 {
+  font-family: var(--monospaceFont);
+}
 </style>

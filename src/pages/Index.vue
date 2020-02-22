@@ -2,7 +2,7 @@
   <Layout>
     <div class="listOfPosts" role="list">
       <PostCard
-        v-for="edge in $static.allBlogPost.edges"
+        v-for="edge in $page.allBlogPost.edges"
         :key="edge.node.id"
         @click="$router.push({ path: edge.node.path })"
         :header="edge.node.title"
@@ -22,7 +22,7 @@
   </Layout>
 </template>
 
-<static-query>
+<page-query>
 query {
   metadata {
     siteName
@@ -44,7 +44,7 @@ query {
     }
   }
 }
-</static-query>
+</page-query>
 
 <script>
 import PostCard from "../components/PostCard"

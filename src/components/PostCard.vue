@@ -30,7 +30,7 @@ function setRotationAndPercentage(angle) {
         let yPercentage = ((y / height) - 0.5) * 2;
         let rotY = Math.round(xPercentage * angle);
         let rotX = Math.round(-1 * yPercentage * angle);
-        gsap.to(this.$refs.card, { rotationX: rotX, rotationY: rotY, background: `radial-gradient(circle at ${((xPercentage + 1) / 2) * 100}% ${((yPercentage + 1) / 2) * 100}%, rgba(255, 255, 255, 0.1), transparent 75%), var(--cardColorPrimary)` });
+        gsap.to(this.$refs.card, { rotationX: rotX, rotationY: rotY, background: `radial-gradient(circle at ${((xPercentage + 1) / 2) * 100}% ${((yPercentage + 1) / 2) * 100}%, rgba(255, 255, 255, 0.2), transparent 75%), var(--cardColorPrimary)` });
     }
 }
 export default {

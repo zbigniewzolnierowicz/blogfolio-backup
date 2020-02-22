@@ -18,6 +18,11 @@ module.exports = {
         tags: {
           typeName: '[Tag]',
           create: true
+        },
+        remark: {
+          plugins: [
+            ['gridsome-plugin-remark-youtube', {width: '100%', align: 'auto'}]
+          ]
         }
       }
     }

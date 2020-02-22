@@ -16,19 +16,13 @@ query {
 }
 </static-query>
 
-<style lang="scss">
-body, html {
-  box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-}
+<style lang="scss" scoped>
 .BasicLayout {
   h1 {
     margin: 0
   }
 }
-header h1 {
+.header h1 {
   font-family: var(--monospaceFont);
 }
 </style>

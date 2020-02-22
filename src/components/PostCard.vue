@@ -86,10 +86,8 @@ export default {
         grid-area: main;
     }
     header {
-        cursor: pointer;
         grid-area: header;
-        grid-row: 1 / 2;
-        grid-column: 1 / 1;
+        cursor: pointer;
         font-size: 1.5rem;
         display: flex;
         align-items: center;
@@ -108,8 +106,6 @@ export default {
     }
     aside {
         grid-area: aside;
-        grid-column: 2 / 3;
-        grid-row: 1 / 2;
         img, svg {
             display: block;
             width: 100%;
@@ -120,8 +116,6 @@ export default {
     section.navigator {
         cursor: pointer;
         grid-area: navigator;
-        grid-row: 3 / 3;
-        grid-column: 2 / 2;
         align-self: flex-end;
         justify-self: flex-end;
         svg {

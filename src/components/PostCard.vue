@@ -143,7 +143,7 @@ export default {
             margin-right: 1ch;
         }
     }
-    section.ttr {
+    .ttr {
         display: flex;
         grid-area: ttr;
         font-family: var(--sansSerifFont);

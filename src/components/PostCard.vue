@@ -86,13 +86,21 @@ export default {
         grid-area: header;
         grid-row: 1 / 2;
         grid-column: 1 / 1;
-        h3 a {
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        h3 {
+            margin: 0;
+            font-size: 4vh;
+            a {
             transition: 300ms color ease;
             color: #734b6d;
             &:hover {
                 color: #ac73a3;
             }
         }
+    }
     }
     aside {
         grid-area: aside;

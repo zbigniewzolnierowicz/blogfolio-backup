@@ -1,8 +1,8 @@
 <template>
   <div class="BasicLayout">
-    <header>
+    <section class="header" :title="$static.metadata.siteName">
       <h1>{{ $static.metadata.siteName }}</h1>
-    </header>
+    </section>
     <slot/>
     <footer></footer>
   </div>

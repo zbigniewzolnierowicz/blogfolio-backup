@@ -1,18 +1,18 @@
 <template>
     <div class="PostCard" @mousemove.capture="moveHandler" @mouseleave="resetRotate" @mousedown="resetRotate" ref="card">
         <header>
-            <h3><a @click="$emit('click')">{{ header }}</a></h3>
+            <h3 :title="header"><a @click="$emit('click')">{{ header }}</a></h3>
         </header>
         <main>
             <slot name="main"/>
         </main>
-        <section class="chips" role="list">
+        <div class="chips" role="list">
             <slot name="chips" />
-        </section>
+        </div>
         <section class="ttr">
             {{ timeToRead }}
         </section>
-        <section class="navigator" @click="$emit('click')"><chevron-right-icon /></section>
+        <div class="navigator" @click="$emit('click')" role="button" :aria-label="'read article called' + header"><chevron-right-icon /></div>
     </div>    
 </template>
 
@@ -114,7 +114,7 @@ export default {
             object-fit: contain;
         }
     }
-    section.navigator {
+    .navigator {
         cursor: pointer;
         grid-area: navigator;
         align-self: flex-end;
@@ -146,7 +146,7 @@ export default {
         display: flex;
         grid-area: ttr;
         font-family: var(--sansSerifFont);
-        color: hsl(var(--cardColorPrimary-h), var(--cardColorPrimary-s), calc(var(--cardColorPrimary-l) - 30%));
+        color: hsl(var(--cardColorPrimary-h), var(--cardColorPrimary-s), calc(var(--cardColorPrimary-l) - 40%));
         align-items: center;
         justify-content: center;
     }

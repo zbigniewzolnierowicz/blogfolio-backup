@@ -22,7 +22,7 @@ $md-chip-height: 32px;
   border-radius: 32px;
   font-size: 13px;
   font-weight: bold;
-  color: hsl(var(--cardColorPrimary-h), 0% , calc(100% - calc(var(--cardColorPrimary-l) - 10%)));
+  color: hsl(var(--cardColorPrimary-h), 0% , calc(100% - calc(var(--cardColorPrimary-l))));
   &:hover {
     background: hsl(var(--cardColorPrimary-h), var(--cardColorPrimary-s), calc(var(--cardColorPrimary-l) - 30%));
     color: hsl(var(--cardColorPrimary-h), 0% , calc(100% - calc(var(--cardColorPrimary-l) + 20%)));

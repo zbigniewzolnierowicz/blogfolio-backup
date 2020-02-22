@@ -19,8 +19,8 @@
 <script>
 import { gsap } from 'gsap';
 import { ChevronRightIcon } from 'vue-feather-icons';
-function generateGradient(xPercentage = 50, yPercentage = 50) {
-  return `radial-gradient(circle at ${xPercentage}% ${yPercentage}%, rgba(255, 255, 255, 0.2), transparent 75%), var(--cardColorPrimary)`
+function generateGradient(xPercentage = 50, yPercentage = 50, reset = false) {
+  return `radial-gradient(circle at ${xPercentage}% ${yPercentage}%, ${reset ? 'transparent' : 'rgba(255, 255, 255, 0.2)'}, transparent 75%), var(--cardColorPrimary)`
 }
 function setRotationAndPercentage(angle) {
 return function(e) {
@@ -43,7 +43,7 @@ export default {
     moveHandler: setRotationAndPercentage(7.5),
     resetRotate(e) {
       setTimeout(() => {
-        gsap.to(this.$refs.card, { rotationX: 0, rotationY: 0, background: generateGradient() });
+        gsap.to(this.$refs.card, { rotationX: 0, rotationY: 0, background: generateGradient(undefined, undefined, true) });
       }, 500)
     }
   },

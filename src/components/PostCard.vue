@@ -9,6 +9,9 @@
         <aside>
             <slot name="aside"/>
         </aside>
+        <section class="chips">
+            <slot name="chips" />
+        </section>
         <section class="navigator" @click="$emit('click')"><chevron-right-icon /></section>
     </div>    
 </template>
@@ -40,7 +43,7 @@ export default {
         }
     },
     methods: {
-        moveHandler: setRotationAndPercentage(5),
+        moveHandler: setRotationAndPercentage(7.5),
         resetRotate(e) {
             setTimeout(() => {
                 gsap.to(this.$refs.card, { rotationX: 0, rotationY: 0, background: `radial-gradient(circle at 50% 50%, transparent, transparent 75%), var(--cardColorPrimary)` });
@@ -66,7 +69,7 @@ export default {
     grid-template-areas:
         "header header header"
         "main main aside"
-        "main main navigator";
+        "chips chips navigator";
     padding: 1em;
     margin: 1em;
     perspective: 300rem;
@@ -95,13 +98,13 @@ export default {
             margin: 0;
             font-size: 4vh;
             a {
-            transition: 300ms color ease;
-            color: #734b6d;
-            &:hover {
-                color: #ac73a3;
+                transition: 300ms color ease;
+                color: #734b6d;
+                &:hover {
+                    color: #ac73a3;
+                }
             }
         }
-    }
     }
     aside {
         grid-area: aside;
@@ -128,6 +131,20 @@ export default {
                 color: hsl(var(--cardColorPrimary-h), var(--cardColorPrimary-s), calc(var(--cardColorPrimary-l) - 30%));;
             }
         }
+    }
+    section.chips {
+        grid-area: chips;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        .md-chip {
+            &:first-child {
+                margin-left: 0;
+            }
+            &:last-child {
+                margin-right: 0;
+            }
+            margin-right: 1ch;
         }
     }
 }

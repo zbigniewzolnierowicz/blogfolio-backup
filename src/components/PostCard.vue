@@ -88,7 +88,7 @@ export default {
     }
     header {
         grid-area: header;
-        cursor: pointer;
+        cursor: default;
         font-size: 1.5rem;
         display: flex;
         align-items: center;
@@ -145,6 +145,7 @@ export default {
     }
     .ttr {
         display: flex;
+        cursor: default;
         grid-area: ttr;
         font-family: var(--sansSerifFont);
         color: hsl(var(--cardColorPrimary-h), var(--cardColorPrimary-s), calc(var(--cardColorPrimary-l) - 40%));

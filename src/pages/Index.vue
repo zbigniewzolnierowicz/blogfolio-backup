@@ -51,6 +51,9 @@ export default {
   components: {
     PostCard,
     Chip
+  },
+  mounted() {
+    console.log("You look at the maclunky and think about how tasty it is. You think about how delicious it would be if you ate it raw. You think about how delicious it would be if you ate it cooked.")
   }
 }
 </script>

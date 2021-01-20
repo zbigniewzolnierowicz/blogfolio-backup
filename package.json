@@ -11,7 +11,7 @@
     "@gridsome/transformer-remark": "^0.4.0",
     "gridsome": "^0.7.0",
     "gridsome-plugin-remark-youtube": "^1.0.1",
-    "gsap": "^3.1.1",
+    "gsap": "^3.6.0",
     "vue-feather-icons": "^5.0.0"
   },
   "devDependencies": {
